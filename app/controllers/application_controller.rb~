@@ -1,0 +1,15 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  def new
+    @location = Location.new
+  end
+
+  def index
+    if params[:search].present?
+      @location = Location.near(params[:search]), 50, :order => :distance)
+    else
+      @location = Location.all
+    end
+  end
+end

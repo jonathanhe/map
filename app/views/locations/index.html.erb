@@ -1,0 +1,23 @@
+<%= form_tag locations_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search near", :name => nil %>
+  </p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>latitude</th>
+    <th>longitude</th>
+  </tr>
+  <% for location in @locations %>
+    <tr>
+      <td><%= link_to location.address, location %></td>
+      <td><%= location.latitude %></td>
+      <td><%= location.longitude %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to 'New location', new_location_path %></p>
